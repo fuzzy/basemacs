@@ -3,19 +3,22 @@
 ;; Set some defaults
 ;;
 
+(when (display-graphic-p)
+	;; These things should be turned on, when in GUI mode
+	(tool-bar-mode -1))
+
 ;; mouse interaction options
 (setq mouse-autoselect-window t
 			mouse-drag-and-drop-region t
 			mouse-drag-and-drop-region-cross-program t
-			xterm-mouse-mode t)
-
-;; toolbar and visual bell
-(when (display-graphic-p)
-	(tool-bar-mode -1))
-(setq	visible-bell 1)
-
-;; store our auth info in an encrypted file
-(setq auth-sources '("~/.authinfo.gpg"))
+			xterm-mouse-mode t
+			;; bell
+			visible-bell 1
+			;; encrypted credential store
+			auth-sources '("~/.authinfo.gpg")
+			warning-minimum-level :error
+			tab-width 2
+			)
 
 ;; automatically revert buffers when they change on disk
 (global-auto-revert-mode t)
@@ -23,13 +26,13 @@
 ;; display line numbers, TODO make this a config option for line number style
 (global-display-line-numbers-mode 1)
 
-;; set our default warning level to error
-(setq warning-minimum-level :error)
+;; tab indent mode
+(indent-tabs-mode 1)
 
 ;; set the default tab width to 2 spaces
 (setq-default tab-width 2)
-(setq tab-width 2)
-(setq indent-tabs-mode 1)
+
+
 
 ;; Set the default help lines
 (setq thwap-help-lines '("--------------"
@@ -38,26 +41,14 @@
 												 "Welcome to the T.H.W.A.P. Emacs Dashboard"))
 
 
-;;
-;; Golden Ratio Mode helps with window sizing, and is a default feature
-;;
-
-;; golden-ratio
-(use-package golden-ratio
-	:straight t
-	:demand t
-	:config
-	(golden-ratio-mode 1)
-	(setq golden-ratio-auto-scale t))
-(message "Golden Ratio Mode Enabled")
 
 ;;
 ;; Set up the T.H.W.A.P. keybindings and hydra
 ;;
 
-(use-package hydra
-	:straight t
-	:demand t)
+;; (use-package hydra
+;; 	:straight t
+;; 	:demand t)
 
 ;; The T.H.W.A.P. Map
 ;; This is the base starting point for the T.H.W.A.P. keybindings
@@ -86,26 +77,6 @@
 															("C-t" "Toggle Treemacs" '(lambda () (interactive) (treemacs)))
 															("y" "YaSnippet Menu" 'thwap-yasnippet-hydra/body)))
 
-	
-(use-package yasnippet
-	:straight t
-	:demand t
-	:config
-	(require 'yasnippet)
-	(setq yas-snippet-dirs '("~/.emacs.d/snippets")))
-(message "Yasnippet loaded")
-
-(use-package yasnippet-snippets
-	:straight t
-	:defer t
-	:config
-	(require 'yasnippet-snippets)
-	(yas-reload-all)
-	(yas-global-mode 1))
-(message "Yasnippet-Snippets loaded")
-
-;; yasnippet stuff
-(thwap/add-key-binding "y n" 'yas-new-snippet "Create a new yasnippet")
 
 (setq truncate-lines nil)
 

@@ -1,25 +1,9 @@
-;;
-;; Load paths
-;;
-
 ;; Add the lib directory to the load path
 (add-to-list 'load-path (expand-file-name "thwap" user-emacs-directory))
-
-;; Add the thwap.d directory to the load path
-(add-to-list 'load-path (expand-file-name "thwap.d" user-emacs-directory))
-
-
-;;
-;; Package management dependencies
-;;
+(add-to-list 'load-path (expand-file-name "thwap/layers" user-emacs-directory))
 
 ;; And disable package at startup
 (setq package-enable-at-startup nil)
-
-
-;;
-;; Bootstrap package management with straight.el and use-package
-;;
 
 ;; Bootstrap straight.el
 (defvar bootstrap-version)

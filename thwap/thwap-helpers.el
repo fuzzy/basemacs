@@ -1,4 +1,9 @@
 ;;
+;; Helper functions to generate customization stuff
+
+
+
+;;
 ;; Helper functions for keybindings
 ;;
 
