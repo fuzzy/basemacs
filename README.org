@@ -2,7 +2,7 @@
 #+CAPTION: BaseMacs: Base GNU Emacs Configuration Framework
 #+NAME: logo
 #+ATTR_HTML: :align center
-[[./logos/logo3.png]]
+[[./logos/logo1.png]]
 #+END_CENTER
 
 * Base Emacs Configuration
