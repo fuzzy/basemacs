@@ -1,9 +1,9 @@
 ;; thwap helpers, functions the layers use
-(require 'thwap-helpers)
+(require 'base-helpers)
 ;; thwap variables, empty variables for menu/hydra/keybinding/etc generation
-(require 'thwap-variables)
+(require 'base-variables)
 ;; thwap config, customization group
-(require 'thwap-customizer)
+(require 'base-customizer)
 
 (setq custom-init "~/.emacs.d/custom-init.el")
 
@@ -20,8 +20,8 @@
 ;; thwap config
 ;; (require 'thwap-configuration)
 ;; thwap defaults
-(require 'thwap-defaults)
-(require 'thwap-layers)
+(require 'base-defaults)
+(require 'base-layers)
 ;; theme configuration
 ;; (require 'thwap-interface)
 ;; file browser configuration
@@ -34,7 +34,7 @@
 ;; (require 'thwap-orgmode)
 
 ;; now that everything is loaded, let's load all the user configurations
-(let ((user-config (thwap/list-files-with-extension "~/.emacs.d/thwap.d" "el")))
+(let ((user-config (base/list-files-with-extension "~/.emacs.d/base.d" "el")))
 	(dolist (config user-config)
 		(load-file config)))
 
@@ -43,5 +43,5 @@
 ;; hydras
 ;; (require 'thwap-hydra)
 
-(when (memq 'thwap-dashboard-toggle thwap-layers)
-	(load-file "~/.emacs.d/thwap/layers/dashboard.el"))
+(when (memq 'base-dashboard-toggle base-layers)
+	(load-file "~/.emacs.d/base/layers/dashboard.el"))

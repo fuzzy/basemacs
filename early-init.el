@@ -1,6 +1,6 @@
 ;; Add the lib directory to the load path
-(add-to-list 'load-path (expand-file-name "thwap" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "thwap/layers" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "base" user-emacs-directory))
+;; (add-to-list 'load-path (expand-file-name "base/layers" user-emacs-directory))
 
 ;; And disable package at startup
 (setq package-enable-at-startup nil)
@@ -25,3 +25,13 @@
 ;; Set up straight.el to use use-package
 (straight-use-package 'use-package)
 
+(require 'base-helpers)
+(require 'base-varibles)
+(require 'base-customizer)
+(require 'base-defaults)
+(require 'base-layers)
+
+(add-hook 'after-init-hook
+					(lambda ()
+						(when (memq 'base-dashboard-toggle base-layers)
+							(load-file (expand-file-name "base/layers/dashboard.el" user-emacs-directory)))))
