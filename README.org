@@ -185,7 +185,7 @@ Generates a unique filename for Org-capture.
 *** Arguments:
 None.
 
-** base/org-agenda-files-update
+** =base/org-agenda-files-update=
 
 *** Description:
 Updates the org-agenda-files variable with all .org files in a directory.
@@ -200,7 +200,7 @@ None.
 
 * Variables
 
-** base-help-lines
+** =base-help-lines=
 
 *** Description:
 Contains help lines for the BaseMacs dashboard.
@@ -210,7 +210,7 @@ Contains help lines for the BaseMacs dashboard.
 (setq base-help-lines '("Help lines"))
 #+end_src
 
-** base-user-key-prefix
+** =base-user-key-prefix=
 
 *** Description:
 The prefix for all user keys (default is "C-c").
@@ -220,7 +220,7 @@ The prefix for all user keys (default is "C-c").
 (setq base-user-key-prefix "C-c")
 #+end_src
 
-** base-user-key-base
+** =base-user-key-base=
 
 *** Description:
 The base for all user keys (default is "b").
@@ -230,7 +230,7 @@ The base for all user keys (default is "b").
 (setq base-user-key-base "b")
 #+end_src
 
-** base-layer-toggles
+** =base-layer-toggles=
 
 *** Description:
 Container for the layer toggle options.
@@ -240,7 +240,7 @@ Container for the layer toggle options.
 (setq base-layer-toggles '(("dashboard" base-dashboard-toggle)))
 #+end_src
 
-** base-help-tag
+** =base-help-tag=
 
 *** Description:
 A tag used for help messages and labels.
