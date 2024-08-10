@@ -25,16 +25,19 @@
 ;; Set up straight.el to use use-package
 (straight-use-package 'use-package)
 
-(require 'base-helpers)
-(require 'base-varibles)
-(require 'base-customizer)
-(require 'base-defaults)
+(require 'base-variables)
 
 ;; We do this after init.el is processed, for multiple reasons.
 ;; 1. We want to load the layers after the user configurations, so that user configurations get reflected in the layers
 ;; 2. We want to load the dashboard after the layers, so that the dashboard can reflect the layers custom keybindings if any
 (add-hook 'after-init-hook
 					(lambda ()
+						;; load the helper functions
+						(require 'base-helpers)
+						;; load the customizer
+						(require 'base-customizer)
+						;; load the defaults here to give the user a chance to override them
+						(require 'base-defaults)
 						;; load the layers
 						(require 'base-layers)
 						;; now that everything is loaded, let's load all the user configurations
