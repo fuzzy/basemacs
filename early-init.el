@@ -29,9 +29,18 @@
 (require 'base-varibles)
 (require 'base-customizer)
 (require 'base-defaults)
-(require 'base-layers)
 
+;; We do this after init.el is processed, for multiple reasons.
+;; 1. We want to load the layers after the user configurations, so that user configurations get reflected in the layers
+;; 2. We want to load the dashboard after the layers, so that the dashboard can reflect the layers custom keybindings if any
 (add-hook 'after-init-hook
 					(lambda ()
+						;; load the layers
+						(require 'base-layers)
+						;; now that everything is loaded, let's load all the user configurations
+						(let ((user-config (base/list-files-with-extension "~/.emacs.d/base.d" "el")))
+							(dolist (config user-config)
+								(load-file config)))
+						;; load the dashboard if it's enabled
 						(when (memq 'base-dashboard-toggle base-layers)
 							(load-file (expand-file-name "base/layers/dashboard.el" user-emacs-directory)))))
