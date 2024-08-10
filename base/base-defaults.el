@@ -1,11 +1,4 @@
-
-(unless (boundp 'base-help-tag)
-	(setq base-help-tag "BaseMacs"))
-
-(unless (boundp 'base-user-key-base)
-	(setq base-user-key-base "b"))
-
-;; Set the default help lines
+;; Set the default help lines for the BaseMacs dashboard. In reverse order.
 (setq base-help-lines '("--------------"
 												(format "All %s commands will start with 'C-c %s'" base-help-tag base-user-key-base)
 												""
@@ -13,7 +6,7 @@
 
 ;; This is the base starting point for the BaseMacs keybindings
 (define-prefix-command 'base-map)
-(global-set-key (kbd (format "C-c %s" base-user-key-base)) 'base-map)
+(global-set-key (kbd (format "%s %s" base-user-key-prefix base-user-key-base)) 'base-map)
 
 ;; Add a command to customize the BaseMacs group
 (base/add-key-binding
@@ -21,6 +14,8 @@
  (lambda () (interactive) (customize-group 'base-config))
  (format "Customize this %s Emacs Installation" base-help-tag))
 
-(message "BaseMacs: Defaults Loaded")
+;; success message
+(message (format "%s Defaults Loaded" base-help-tag))
+
 ;; our provide statement
 (provide 'base-defaults)
