@@ -1,79 +1,38 @@
 #+BEGIN_CENTER
-#+CAPTION: ThwapMacs: T.H.W.A.P. GNU Emacs Configuration
+#+CAPTION: BaseMacs: Base GNU Emacs Configuration Framework
 #+NAME: logo
 #+ATTR_HTML: :align center
 [[./logos/logo3.png]]
 #+END_CENTER
 
-* T.H.W.A.P. Emacs Configuration
+* Base Emacs Configuration
 
-I recently advised someone against rolling their own emacs configuration. Then I did it, because I'm smart like that.
-As it turns out, yeah, I was wrong. The result of rolling my own is a nice fast distribution that is somewhat opinionated.
+This configuration has a very minimal set of goals, and is likely not where you want to start. Unless you're looking to roll
+your own emacs configuration and would like a starting point that stays out of your way. BaseMacs provides a set of helper
+functions for making a custom configuration of emacs a little bit nicer (opinionated statement). That's it.
 
-No doubt I've been helped along that journey by much reading and worthy YouTube Emacs content. And in that spirit I am
-publishing this configuration, and endeavoring to ensure that it is well commented and documented. If you have questions,
-concerns, or suggestions, feel free to start a discussion by opening an issue. If you have suggestions, and can't be asked
-to interact with someone, I get it, feel free to send a PR and we can communicate through code if that works for you.
+** What does BaseMacs provide?
 
-** Installation
+BaseMacs will bootstrap straight.el and use-package, and installs emacs-dashboard by default. Nothing else. If you enable
+the other builtin layers, additional packages may get installed. For example, there is support in this framework, for
+generating =hydras=. However, the hydra package is not bootstrapped by default. If you enable that layer, then the packages
+will get installed on the next restart of emacs, and you'll be able to use the hyra helpers.
 
-Simply clone this repository as your ~/.emacs.d directory and start emacs.
+** Usage
 
-#+BEGIN_SRC
-$ test -d ~/.emacs.d && mv ~/.emacs.d ~/emacs.d
-$ git clone https://github.com/fuzzy/thwapmacs ~/.emacs.d
-$ emacs # start up emacs in the normal way and let it bootstrap
-#+END_SRC
+The recommended way to use BaseMacs is to clone this repository, drop your init.el in, and everything should just work as
+usual at that point. Unless you have code that performs the bootstrapping operations or package installs noted above, you
+should notice no difference, except now you have a dashboard with a friendly message telling you the available custom
+keybindings.
 
-This configuration bootstraps and uses straight.el to manage all package installations.
+At this point you can start migrating your configuration to use the helper functions to generate custom hydras, add key
+bindings to your custom keymap and get them automatically added to the dashboard help output, build customization menus to
+handle configuring all of your options. Go nuts!
 
-Once you get emacs started, you will quickly find, that it is nearly as minimal as it can be. straight.el and use-package
-will have been bootstrapped, along with golden-ratio. There is a handy note in the keybindings listed on the dashboard
-telling you which keys to press, in order to get to the customization group. From there, you can enable and configure
-all of the avaiable layers of support. That keybinding for reference, is _C-c t C-c_.
+** Getting started
 
-#+BEGIN_CENTER
-#+CAPTION: An example of the configuration options, in console mode
-#+NAME: config
-#+ATTR_HTML: :align center 
-[[./config.png]]
-#+END_CENTER
+I'll endeavor to fill this section out with a few basic examples to help get you started, as soon as possible.
 
-** Help
+** Helper functions
 
-All keybindings set in this configuration are listed on the dashboard. Any other keybindings set by this configuration
-were the recommended defaults from the package. If a non-default was chosen, it is listed in the help information on
-the dashboard.
-
-Additionally, with any custom configuration you may do, if you wish your keybindings to be added to the _thwap-map_,
-you may do so with the provided _thwap/add-key-binding_ function, like so:
-
-#+begin_src emacs-lisp
-(thwap/add-key-binding
-  "M-s"
-  'org-edit-special
-  "Edit the source at this point, in it's native mode")
-#+end_src
-
-This will prefix it with _C-c t_ like all other T.H.W.A.P. Emacs commands, but it will also place the help message
-into the dashboard's greeting message as a reminder.
-
-** Features
-
-T.H.W.A.P. Emacs (or thwapmacs) is configured to be minimal out of the box, however has rich support for many different
-packages. All of these are off by default with *VERY* few exceptions. Below you will find a list of all the optional
-packages that are natively supported. Further, we'll go over how you can add your own configuration options and take
-advantage of the configuration interface.
-
-*** Non-Optional/Default packages
-
-1. [[https://github.com/radian-software/straight.el][straight.el]]     - straight works with use-package to fetch and setup local installations.
-2. [[https://github.com/jwiegley/use-package][use-package]]     - use-package is a fantastic package management system for local installs.
-3. [[https://github.com/roman/golden-ratio.el][golden-ratio.el]] - Window size management for split buffers. Quite handy.
-4. [[https://github.com/emacs-dashboard/emacs-dashboard][emacs-dashboard]] - A nice handy startup screen, filled with fun facts and stuff.
-5. [[https://github.com/joaotavora/yasnippet][yasnippet]]       - A handy snippet/macro system for commonly used bits.
-
-*** Optional packages
-
-Optional packages are getting their own special home in the _doc/_ directory, so please refer to that location
-for any documentation on what packages are included.
+As well, I will also get the helper functions and example usage documented here.
