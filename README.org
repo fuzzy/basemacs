@@ -5,20 +5,20 @@
 [[./logos/logo1.png]]
 #+END_CENTER
 
-* Base Emacs Configuration
+* BaseMacs Configuration
 
 This configuration has a very minimal set of goals, and is likely not where you want to start. Unless you're looking to roll
 your own emacs configuration and would like a starting point that stays out of your way. BaseMacs provides a set of helper
 functions for making a custom configuration of emacs a little bit nicer (opinionated statement). That's it.
 
-** What does BaseMacs provide?
+* What does BaseMacs provide?
 
 BaseMacs will bootstrap straight.el and use-package, and installs emacs-dashboard by default. Nothing else. If you enable
 the other builtin layers, additional packages may get installed. For example, there is support in this framework, for
 generating =hydras=. However, the hydra package is not bootstrapped by default. If you enable that layer, then the packages
 will get installed on the next restart of emacs, and you'll be able to use the hyra helpers.
 
-** Usage
+* Usage
 
 The recommended way to use BaseMacs is to clone this repository, drop your init.el in, and everything should just work as
 usual at that point. Unless you have code that performs the bootstrapping operations or package installs noted above, you
@@ -33,6 +33,220 @@ handle configuring all of your options. Go nuts!
 
 I'll endeavor to fill this section out with a few basic examples to help get you started, as soon as possible.
 
-** Helper functions
+* Functions
 
-As well, I will also get the helper functions and example usage documented here.
+** =base/generate-set-data=
+*** Description:
+Generates set data for `defcustom` from a list of tags and modes.
+
+*** Usage:
+#+BEGIN_SRC elisp
+(base/generate-set-data tags-and-modes)
+#+END_SRC
+
+*** Arguments:
+- =tags-and-modes=: A list of pairs where each pair is (tag mode).
+
+** =base/generate-defcustom=
+
+*** Description:
+Generates and evaluates a defcustom block.
+
+*** Usage:
+#+BEGIN_SRC elisp
+(base/generate-defcustom custom-var-name custom-var-desc tags-and-modes custom-group)
+#+END_SRC
+
+*** Arguments:
+- =custom-var-name=: The name of the custom variable.
+- =custom-var-desc=: Description of the custom variable.
+- =tags-and-modes=: A list of pairs where each pair is (tag mode).
+- =custom-group=: The group for the custom variable.
+
+** =base/add-key-binding=
+
+*** Description:
+Adds a key binding to the BaseMacs keymap.
+
+*** Usage:
+#+BEGIN_SRC elisp
+(base/add-key-binding key command help-text)
+#+END_SRC
+
+*** Arguments:
+- =key=: The key to bind.
+- =command=: The command to execute.
+- =help-text=: A description of the command.
+
+** =base/touch-file=
+
+*** Description:
+Creates an empty file or updates its modification timestamp if it exists.
+
+*** Usage:
+#+BEGIN_SRC elisp
+(base/touch-file filename)
+#+END_SRC
+
+*** Arguments:
+- =filename=: The name of the file to touch.
+
+** =base/create-hydra-menu=
+
+*** Description:
+Creates a hydra menu.
+
+*** Usage:
+#+BEGIN_SRC elisp
+(base/create-hydra-menu name menu-string input-data-list)
+#+END_SRC
+
+*** Arguments:
+- =name=: The name of the hydra.
+- =menu-string=: The title of the menu.
+- =input-data-list=: A list of menu items, each containing a key, description, and command.
+
+** =base/dashboard-insert-logo-title=
+
+*** Description:
+Inserts a banner into the dashboard buffer.
+
+*** Usage:
+#+begin_src emacs-lisp
+(base/dashboard-insert-logo-title banner)
+#+end_src
+
+*** Arguments:
+- =banner=: The banner string or list of strings to insert.
+
+** =base/dashboard-build-logo-title=
+
+*** Description:
+Builds a list of strings to display as the banner.
+
+*** Usage:
+#+begin_src emacs-lisp
+(base/dashboard-build-logo-title lst)
+#+end_src
+
+*** Arguments:
+- =lst=: A list of strings to form the banner.
+
+** =base/random-string-from-list=
+
+*** Description:
+Returns a random string from a list.
+
+*** Usage:
+#+begin_src elisp
+(base/random-string-from-list strings)
+#+end_src
+
+*** Arguments:
+- =strings=: A list of strings to choose from.
+
+** =base/ensure-directory-exists=
+
+*** Description:
+Ensures that a directory exists, creating it if necessary.
+
+*** Usage:
+#+begin_src elisp
+(base/ensure-directory-exists dir)
+#+end_src
+
+*** Arguments:
+- =dir=: The directory path to check or create.
+
+** =base/list-files-with-extension=
+
+*** Description:
+Recursively lists all files in a directory with a given extension.
+
+*** Usage:
+#+begin_src elisp
+(base/list-files-with-extension dir extension)
+#+end_src
+
+*** Arguments:
+- =dir=: The directory to search.
+- =extension=: The file extension to filter by.
+
+** =base/org-capture-get-unique-filename=
+
+*** Description:
+Generates a unique filename for Org-capture.
+
+*** Usage:
+#+begin_src elisp
+(base/org-capture-get-unique-filename)
+#+end_src
+
+*** Arguments:
+None.
+
+** base/org-agenda-files-update
+
+*** Description:
+Updates the org-agenda-files variable with all .org files in a directory.
+
+*** Usage:
+#+begin_src elisp
+(base/org-agenda-files-update)
+#+end_src
+
+*** Arguments:
+None.
+
+* Variables
+
+** base-help-lines
+
+*** Description:
+Contains help lines for the BaseMacs dashboard.
+
+*** Default Value:
+#+BEGIN_SRC elisp
+(setq base-help-lines '("Help lines"))
+#+end_src
+
+** base-user-key-prefix
+
+*** Description:
+The prefix for all user keys (default is "C-c").
+
+*** Default Value:
+#+BEGIN_SRC elisp
+(setq base-user-key-prefix "C-c")
+#+end_src
+
+** base-user-key-base
+
+*** Description:
+The base for all user keys (default is "b").
+
+*** Default Value:
+#+BEGIN_SRC elisp
+(setq base-user-key-base "b")
+#+end_src
+
+** base-layer-toggles
+
+*** Description:
+Container for the layer toggle options.
+
+*** Default Value:
+#+BEGIN_SRC elisp
+(setq base-layer-toggles '(("dashboard" base-dashboard-toggle)))
+#+end_src
+
+** base-help-tag
+
+*** Description:
+A tag used for help messages and labels.
+
+*** Default Value:
+#+BEGIN_SRC elisp
+(setq base-help-tag "BaseMacs")
+#+end_src
+
